@@ -1,4 +1,4 @@
-# Scrapy settings for webscraper2_0 project
+# Scrapy settings for animated_spider project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "webscraper2_0"
+BOT_NAME = "animated_spider"
 
-SPIDER_MODULES = ["webscraper2_0.spiders"]
-NEWSPIDER_MODULE = "webscraper2_0.spiders"
+SPIDER_MODULES = ["animated_spider.spiders"]
+NEWSPIDER_MODULE = "animated_spider.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "webscraper2_0 (+http://www.yourdomain.com)"
+#USER_AGENT = "animated_spider (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "webscraper2_0.middlewares.Webscraper20SpiderMiddleware": 543,
+#    "animated_spider.middlewares.AnimatedSpiderSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "webscraper2_0.middlewares.Webscraper20DownloaderMiddleware": 543,
+#    "animated_spider.middlewares.AnimatedSpiderDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "webscraper2_0.pipelines.Webscraper20Pipeline": 300,
+#    "animated_spider.pipelines.AnimatedSpiderPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
