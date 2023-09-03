@@ -1,0 +1,14 @@
+
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPPod
+metadata:
+  name: restricted
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    required_annotations:
+      - "seccomp.security.alpha.kubernetes.io/allowedProfileNames"
+      - "apparmor.security.beta.kubernetes.io/defaultProfileName"

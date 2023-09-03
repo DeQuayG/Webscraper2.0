@@ -1,0 +1,63 @@
+customConstraintTemplates:
+- apiVersion: templates.gatekeeper.sh/v1beta1
+  kind: ConstraintTemplate
+  metadata:
+    name: podsecuritypolicy
+  spec:
+    crd:
+      spec:
+        names:
+          kind: PodSecurityPolicy
+    targets:
+      - target: admission.k8s.gatekeeper.sh
+        rego: |
+          package k8spsp
+
+          violation[{"msg": msg, "details": {"missing": missing}}] {
+            provided_psps := {psp | input.review.object.kind == "PodSecurityPolicy"
+                                  psp := input.review.object}
+
+            required_annotations = {
+              "seccomp.security.alpha.kubernetes.io/allowedProfileNames": {"runtime/default", "runtime/localhost"},
+              "apparmor.security.beta.kubernetes.io/defaultProfileName": {"runtime/default"}
+            }
+
+            required_annotations[annotation][_] {
+              not provided_psps[_].metadata.annotations[annotation]
+            }
+            msg = sprintf("Annotation %v must be set", [annotation])
+            missing = annotation
+
+            not provided_psps[_].spec.allowPrivilegeEscalation
+            msg = "allowPrivilegeEscalation must be set to false"
+            missing = "allowPrivilegeEscalation"
+
+            not provided_psps[_].spec.runAsNonRoot
+            msg = "runAsNonRoot must be set to true"
+            missing = "runAsNonRoot"
+
+            not provided_psps[_].spec.fsGroup
+            msg = "fsGroup must be set"
+            missing = "fsGroup"
+
+            provided_capabilities = {cap | cap = provided_psps[_].spec.allowedCapabilities[_]}
+            not "ALL" in provided_capabilities
+            msg = "Capability drop: ALL must be set"
+            missing = "capabilities"
+
+            not provided_psps[_].spec.hostIPC
+            msg = "hostIPC must be set"
+            missing = "hostIPC"
+
+            not provided_psps[_].spec.hostPID
+            msg = "hostPID must be set"
+            missing = "hostPID"
+
+            not provided_psps[_].spec.hostNetwork
+            msg = "hostNetwork must be set"
+            missing = "hostNetwork"
+
+            not provided_psps[_].spec.volumes[_]
+            msg = "At least one volume type must be set"
+            missing = "volumes"
+          }

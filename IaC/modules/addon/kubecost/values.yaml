@@ -1,0 +1,152 @@
+# global:
+#   prometheus:
+#     enabled: true
+#     fqdn: http://cost-analyzer-prometheus-server.default.svc
+
+#   thanos:
+#     enabled: false
+
+#   grafana:
+#     enabled: true
+#     domainName: cost-analyzer-grafana.default.svc
+#     scheme: "http"
+#     proxy: true
+
+#   gcpstore:
+#     enabled: false
+
+# kubecostMetrics:
+#   emitPodAnnotations: true
+#   emitNamespaceAnnotations: true
+
+# serviceAccount:
+#   create: false
+#   metadata:
+#     name: kubecost-cost-analyzer
+
+# remoteReadEnabled: true
+
+# podSecurityPolicy:
+#   enabled: false
+
+# networkCosts:
+#   podSecurityPolicy:
+#     enabled: false
+
+# prometheus:
+#   podSecurityPolicy:
+#     enabled: false
+
+# grafana:
+#   rbac:
+#     pspEnabled: false
+
+# manager:
+#   securityContext:
+#     allowPrivilegeEscalation: false
+#     capabilities:
+#       drop: ["ALL"]
+#     runAsNonRoot: false
+#     seccompProfile:
+#       type: "Localhost"
+
+# grafana:
+#   domainName: "kubecost-grafana.kubecost"
+
+#   prometheus:
+#     enabled: true
+#     fqdn: "http://kube-prometheus-prometheus.prometheus.svc:9090"
+
+# prometheus:
+#   nodeExporter:
+#     enabled: "false"
+
+#   kube-state-metrics:
+#     disabled: true
+
+#   serviceAccounts:
+#     nodeExporter:
+#       create: false
+
+# persistentVolume:
+#   dbPVEnabled: true
+#   storageClass: "gp2"
+
+# kubernetes.io/ingress.class: "alb"
+
+# ingress:
+#   kubecost-cost-analyzer:
+#     ingressClassName: "alb"
+#     enabled: true
+#     className: "alb"
+#     hosts: ["your-load-balancer-dns-name"]
+#     paths: ["/*"]
+#     servicePort: "9090"
+
+# alb.ingress.kubernetes.io/target-type: "ip"
+# alb.ingress.kubernetes.io/scheme: "internet-facing"
+
+# prometheus:
+#   server:
+#     persistentVolume:
+#       enabled: true
+
+# grafana:
+#   resources:
+#     limits:
+#       cpu: "200m"
+#       memory: "512Mi"
+#     requests:
+#       cpu: "100m"
+#       memory: "256Mi"
+
+# networkCosts:
+#   enabled: true
+
+# sidecar:
+#   dashboards:
+#     enabled: "true"
+
+# kubecostFrontend:
+#   image: "gcr.io/kubecost1/frontend"
+
+# kubecostModel:
+#   image: "gcr.io/kubecost1/cost-model"
+#   cloudCost:
+#     enabled: true
+
+# sidecar:
+#   dashboards:
+#     searchNamespace: "ALL"
+
+# cloudCost:
+#   enabled: true
+
+# labelList:
+#   isIncludeList: false
+
+# topNItems: "1000"
+
+# ingress:
+#   enabled: true
+
+# networkPolicy:
+#   enabled: false
+
+# grafana:
+#   sidecar:
+#     datasources:
+#       defaultDatasourceEnabled: true
+
+#   baseUrl: "http://your-load-balancer-dns-name:3000"
+
+# costAnalyzer:
+#   baseUrl: "http://your-load-balancer-dns-name:3001"
+
+# prometheus:
+#   baseUrl: "http://your-load-balancer-dns-name:9090"
+
+# serviceAccountName: "kubecost-cost-analyzer"
+
+# serviceAccount:
+#   value: "kubecost-cost-analyzer"

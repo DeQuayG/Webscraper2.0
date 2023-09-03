@@ -1,0 +1,22 @@
+image: amazon/aws-cli:2.2.40
+
+pipelines:
+  default:
+    - step:
+        name: Linting and Security Checks
+        caches:
+          - tflint
+          - checkov
+        script:
+          - mkdir -p $BITBUCKET_CACHE_DIR/tflint
+          - export PATH=$BITBUCKET_CACHE_DIR/tflint:$PATH
+          - if [ ! -f $BITBUCKET_CACHE_DIR/tflint/tflint ]; then wget -qO- https://github.com/terraform-linters/tflint/releases/latest/download/tflint_linux_amd64.zip | busybox unzip -d $BITBUCKET_CACHE_DIR/tflint -; fi
+
+          - mkdir -p $BITBUCKET_CACHE_DIR/checkov
+          - export PATH=$BITBUCKET_CACHE_DIR/checkov:$PATH
+          - if [ ! -f $BITBUCKET_CACHE_DIR/checkov/checkov ]; then wget -qO- https://github.com/bridgecrewio/checkov/releases/latest/download/checkov-linux-amd64 -O $BITBUCKET_CACHE_DIR/checkov/checkov; chmod +x $BITBUCKET_CACHE_DIR/checkov/checkov; fi
+
+          - tflint --version
+          - checkov --version
+          - tflint
+          - checkov -d .

@@ -1,0 +1,2 @@
+oidc_issuer_url=https://oidc.eks.us-east-1.amazonaws.com/id/6E127BEA104926B548073D07ACC650E4
+client_id=6E127BEA104926B548073D07ACC650E4

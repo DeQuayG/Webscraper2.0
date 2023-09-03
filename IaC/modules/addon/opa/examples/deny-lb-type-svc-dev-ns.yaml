@@ -1,0 +1,11 @@
+# apiVersion: constraints.gatekeeper.sh/v1beta1
+# kind: LBTypeSvcNotAllowed
+# metadata:
+#   name: deny-lb-type-svc-dev-ns
+# spec:
+#   match:
+#     kinds:
+#       - apiGroups: [""]
+#         kinds: ["Service"]
+#     namespaces:
+#       - "test"
