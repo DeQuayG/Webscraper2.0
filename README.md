@@ -2,4 +2,5 @@ This project is a webscraper using `Scrapy` that will go out and scrape data fro
 
 CHANGELOG:
 WIP: DB Logic in Python 
+
 Mostly Completed: Backend Infrastructure
