@@ -233,3 +233,7 @@ Thumbs.db
 **/obj
 **/secrets.dev.yaml
 **/values.dev.yaml
+
+## Personal WIP Ignores
+info.*
+info.md
