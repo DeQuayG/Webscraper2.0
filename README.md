@@ -4,3 +4,5 @@ CHANGELOG:
 WIP: DB Logic in Python 
 
 Mostly Completed: Backend Infrastructure
+
+TIP: The Makefile may use a different file path based on your OS... forward slashes back slashes, etc
